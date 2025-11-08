@@ -7,10 +7,13 @@ from starlette.authentication import BaseUser
 from enum import Enum
 from datetime import date, datetime
 
+app = FastAPI()
+
 class Role(str, Enum): # это просто строка с ограниченными значениями
     stutent = 'student'
     teacher = "teacher"
     headman = "headman"
+
 class User(BaseModel):
     id: int
     name: str
