@@ -1,6 +1,5 @@
 # работа с базаой данных потому что надо первую инфу по юзеру сохранять куда то фамилия имя
 # выбор универа
-
 from sqlalchemy import create_engine, Integer, Column, JSON
 from typing import List
 from typing import Optional
@@ -10,7 +9,6 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
-
 
 
 class Base(DeclarativeBase):

@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from app.osnovnoe import Vkuser
+from app.models_orm import User
 
 router = APIRouter()
 
@@ -7,11 +8,11 @@ router = APIRouter()
 # потом вуза роли и группы все в табличку user
 
 
-temp_users = {} # вот тут надо в бд сохранять
+# написать добовление в базу данны
 @router.post("/vk_register/")
 def vk_register(vk_user: Vkuser):
     # Сохраняем черновой объект (например, в сессию или временную таблицу)
-    temp_users[vk_user.vk_id] = vk_user
+    USER[vk_user.vk_id] = vk_user
     return {"message": "VK data received"}
 
 @router.post("/vk_register/univer")
