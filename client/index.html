@@ -48,38 +48,32 @@
                     <option value="mipt">МФТИ</option>
                 </select>
             </div>
-            <button class="max-button primary" onclick="nextStep(2)"> Далее </button>
+            <button class="max-button primary" onclick="nextStep(2)">Далее</button>
         </div>
-
-        <!-- Шаг 2: Факультет -->
+    
+        <!-- Шаг 2: Роль -->
         <div id="step2" class="max-step hidden">
             <div class="max-form-group">
-                <label class="max-label" for="faculty">Выберите факультет:</label>
-                <select class="max-select" id="faculty">
-                    <option value="">-- Сначала выберите вуз --</option>
-                </select>
-            </div>
-            <button class="max-button primary" onclick="nextStep(3)">Далее</button>
-            <button class="max-button secondary" onclick="prevStep(1)">Назад</button>
-        </div>
-
-        <!-- Шаг 3: Роль -->
-        <div id="step3" class="max-step hidden">
-            <div class="max-form-group">
                 <label class="max-label" for="role">Выберите вашу роль:</label>
-                <select class="max-select" id="role">
+                <select class="max-select" id="role" onchange="loadGroups()">
                     <option value="">-- Выберите роль --</option>
                     <option value="student">Студент</option>
                     <option value="teacher">Преподаватель</option>
                     <option value="headman">Староста</option>
                 </select>
             </div>
+    
+            <div class="max-form-group hidden" id="groupSection">
+                <label class="max-label" for="group">Выберите группу:</label>
+                <select class="max-select" id="group"></select>
+            </div>
+    
             <button class="max-button primary" onclick="completeRegistration()">Завершить регистрацию</button>
-            <button class="max-button secondary" onclick="prevStep(2)">Назад</button>
+            <button class="max-button secondary" onclick="prevStep(1)">Назад</button>
         </div>
-
-        <!-- Шаг 4: Завершение -->
-        <div id="step4" class="max-step hidden">
+    
+        <!-- Шаг 3: Завершение -->
+        <div id="step3" class="max-step hidden">
             <div class="max-card">
                 <div class="max-card-header">
                     <h3>✅ Регистрация завершена</h3>
@@ -87,9 +81,8 @@
                 <div class="max-card-content" id="userInfo"></div>
             </div>
             <button class="max-button primary" onclick="enterSystem()">Войти в систему</button>
-            <button class="max-button secondary" onclick="prevStep(3)">Назад</button>
         </div>
-
+    
         <div id="error" style="color:red; margin-top:15px;"></div>
     </div>
 
