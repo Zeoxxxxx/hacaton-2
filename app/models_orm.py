@@ -1,6 +1,7 @@
 # работа с базаой данных потому что надо первую инфу по юзеру сохранять куда то фамилия имя
 # выбор универа
 
+from sqlalchemy import create_engine, Integer, ARRAY
 from typing import List
 from typing import Optional
 from sqlalchemy import ForeignKey
@@ -10,23 +11,39 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
+engine = create_engine("sqlite:///mydatabase.db", echo=True)
+
 class Base(DeclarativeBase):
     pass
+
 class User(Base):
-    __tablename__ = "user_account"
+    __tablename__ = "USER"
     id: Mapped[int] = mapped_column(primary_key=True)
+    max_id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
-    fullname: Mapped[Optional[str]]
-    addresses: Mapped[List["Address"]] = relationship(
-        back_populates="user", cascade="all, delete-orphan"
-    )
+    name_2: Mapped[str] = mapped_column(String(30))
+    rol = Mapped[str] = mapped_column(String(30))
+    univer = Mapped[str] = mapped_column(String(30))
+    gruppa_prepod: Mapped[list[int]] = mapped_column(ARRAY(Integer))  # если у нас студент то мы сохрняем grupa_starosta если препод gruppa_prepod
+    grupa_starosta = Mapped[int] = mapped_column(primary_key=True)
+
+
+    addresses: Mapped[List["UNIVER"]] = relationship(
+        back_populates="univer", cascade="all, delete-orphan"
+    ) # вот как с адресами мне работать
+
     def __repr__(self) -> str:
         return f"User(id={self.id!r}, name={self.name!r}, fullname={self.fullname!r})"
 
-class Address(Base):
-    __tablename__ = "address"
+class UNIVER(Base):
+    __tablename__ = "UNIVER"
+
+
+    # написать связь по универу связку
+
+
+
     id: Mapped[int] = mapped_column(primary_key=True)
-    email_address: Mapped[str]
     user_id: Mapped[int] = mapped_column(ForeignKey("user_account.id"))
     user: Mapped["User"] = relationship(back_populates="addresses")
     def __repr__(self) -> str:

@@ -3,6 +3,10 @@ from app.osnovnoe import Vkuser
 
 router = APIRouter()
 
+# надо реализовать историю что сначала добовление имен и айди в бд
+# потом вуза роли и группы все в табличку user
+
+
 temp_users = {} # вот тут надо в бд сохранять
 @router.post("/vk_register/")
 def vk_register(vk_user: Vkuser):
