@@ -16,6 +16,24 @@ engine = create_engine("sqlite:///mydatabase.db", echo=True)
 class Base(DeclarativeBase):
     pass
 
+
+class MSUGroup(Base):
+    __tablename__ = "msu_groups"
+
+    id = Column(Integer, primary_key=True)
+    group_numbers = ["1213", "3413", "23142", "342342", "0092"]
+ # номер группы
+    user_ids = Column(JSON, default=[])         # список пользователей (из таблицы User), пока пустой
+
+# Создаем базу данных для МГУ
+engine = create_engine("sqlite:///msu.db", echo=True)
+SessionLocal = sessionmaker(bind=engine)
+Base.metadata.create_all(engine)
+
+
+
+
+
 class User(Base):
     __tablename__ = "USER"
     id: Mapped[int] = mapped_column(primary_key=True)
