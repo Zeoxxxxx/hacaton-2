@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from app.osnovnoe import Vkuser
+
 router = APIRouter()
 
 temp_users = {} # вот тут надо в бд сохранять
@@ -9,9 +10,10 @@ def vk_register(vk_user: Vkuser):
     temp_users[vk_user.vk_id] = vk_user
     return {"message": "VK data received"}
 
-@router.get("/register")
-async def register():
-    return {"message": "Registration"}
+@router.post("/vk_register/univer")
+def vk_register(unik: UniversityEnum):
+    temp_users[vk_user.vk_id] = vk_user # и так же в бд сохраняем
+    return {"message": "VK data received"}
 
 
 
